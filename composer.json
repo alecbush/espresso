@@ -1,0 +1,29 @@
+{
+  "name": "alecbush/espresso",
+  "description": "Espresso - A lightweight PHP router for building microservices and APIs fast.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/alecbush/espresso",
+  "autoload": {
+    "psr-4": {
+      "Espresso\\": "src/"
+    }
+  },
+  "scripts": {
+    "build": "php build.php"
+  },
+  "authors": [
+    {
+      "name": "Alec Bush",
+      "email": "alexander.joseph.bush@gmail.com",
+      "role": "creator/maintainer"
+    }
+  ],
+  "repository": {
+    "type": "vcs",
+    "url": "https://github.com/alecbush/espresso"
+  },
+  "require": {
+    "php": ">=8.0"
+  }
+}
