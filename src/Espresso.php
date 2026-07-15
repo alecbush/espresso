@@ -219,6 +219,15 @@ class Request
         if (str_contains($contentType, 'application/json')) {
             return $this->json() ?? [];
         }
+
+        if (str_contains($contentType, 'application/x-www-form-urlencoded')) {
+            $raw = $this->raw();
+            if ($raw !== '') {
+                $parsed = [];
+                parse_str($raw, $parsed);
+                return is_array($parsed) ? $parsed : [];
+            }
+        }
         
         return $_POST;
     }
@@ -397,6 +406,15 @@ class Espresso
     public function patch(string $path, callable $handler): self
     {
         $this->addRoute('PATCH', $path, $handler);
+        return $this;
+    }
+
+    /**
+     * Register QUERY route
+     */
+    public function query(string $path, callable $handler): self
+    {
+        $this->addRoute('QUERY', $path, $handler);
         return $this;
     }
 

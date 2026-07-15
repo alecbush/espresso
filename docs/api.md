@@ -19,6 +19,9 @@ Register a DELETE route.
 #### `patch(string $path, callable $handler): self`
 Register a PATCH route.
 
+#### `query(string $path, callable $handler): self`
+Register a QUERY route.
+
 #### `options(string $path, callable $handler): self`
 Register an OPTIONS route.
 

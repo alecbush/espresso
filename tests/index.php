@@ -34,6 +34,14 @@ $app->post('/items', function ($c) {
     return $c->json(['created' => true], 201);
 });
 
+$app->query('/items/search', function ($c) {
+    $raw = $c->req->raw();
+    return $c->json([
+        'method' => $c->req->method(),
+        'query' => $raw
+    ]);
+});
+
 $app->delete('/items/:id', function ($c) {
     $id = $c->req->param('id');
     return $c->text("Item $id deleted");
@@ -95,6 +103,14 @@ test("POST /items", function () use ($app) {
     $response = $app->fetch('POST', '/items');
     if ($response->getStatus() !== 201) {
         throw new Exception("Expected status 201, got {$response->getStatus()}");
+    }
+});
+
+test("QUERY /items/search", function () use ($app) {
+    $response = $app->fetch('QUERY', '/items/search');
+    $data = json_decode($response->getBody(), true);
+    if ($data['method'] !== 'QUERY') {
+        throw new Exception("Expected method 'QUERY', got '{$data['method']}'");
     }
 });
 

@@ -57,6 +57,14 @@ $app->delete('/items/:id', function ($c) {
     return $c->json(['id' => $id, 'deleted' => true]);
 });
 
+$app->query('/items/search', function ($c) {
+    $payload = $c->req->raw();
+    return $c->json([
+        'method' => $c->req->method(),
+        'payload' => $payload
+    ]);
+});
+
 $app->run();
 ```
 
